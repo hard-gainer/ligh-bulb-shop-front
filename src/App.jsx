@@ -1,14 +1,21 @@
-import UserCard from "./components/UserCard"
-import Counter from "./components/Counter"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import CatalogPage from "./pages/CatalogPage"
+import AuthPage from "./pages/AuthPage"
+import RegisterPage from "./pages/RegisterPage"
+import CartPage from "./pages/CartPage"
+import CheckoutPage from "./pages/CheckoutPage"
 
 function App() {
   return (
-    <div>
-      <UserCard name={"Анатолий"} age={25}/>
-      <UserCard name={"Ольга"} age={35}/>
-      <UserCard name={"Александр"} age={42}/>
-      <Counter />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<CatalogPage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
