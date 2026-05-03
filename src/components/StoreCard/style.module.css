@@ -1,0 +1,30 @@
+.card,
+.cardSelected {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+.cardSelected {
+  border-color: var(--accent);
+  background: #fffbf0;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.address,
+.hours {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
