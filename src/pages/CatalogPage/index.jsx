@@ -1,8 +1,9 @@
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect, useCallback } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import Header from "../../components/Header"
 import FilterSidebar from "../../components/FilterSidebar"
 import ProductGrid from "../../components/ProductGrid"
-import { mockProducts, mockCategories } from "../../data/mockData"
+import { loadProducts, loadCategories } from "../../store/actions/catalogActions"
 import style from "./style.module.css"
 
 const initialFilters = {
@@ -15,19 +16,37 @@ const initialFilters = {
 }
 
 export default function CatalogPage() {
+  const dispatch = useDispatch()
+  const { products, categories, loading, error } = useSelector(state => state.catalog)
   const [filters, setFilters] = useState(initialFilters)
 
-  const products = useMemo(() => {
-    return mockProducts.filter(p => {
-      if (filters.minPrice !== "" && p.price < Number(filters.minPrice)) return false
-      if (filters.maxPrice !== "" && p.price > Number(filters.maxPrice)) return false
-      if (filters.categoryId !== null && p.category_id !== filters.categoryId) return false
+  useEffect(() => {
+    dispatch(loadCategories())
+  }, [dispatch])
+
+  const fetchWithFilters = useCallback(
+    (f) => {
+      dispatch(loadProducts({
+        categoryId: f.categoryId,
+        minPrice: f.minPrice,
+        maxPrice: f.maxPrice,
+      }))
+    },
+    [dispatch]
+  )
+
+  useEffect(() => {
+    fetchWithFilters(filters)
+  }, [filters.categoryId, filters.minPrice, filters.maxPrice]) // eslint-disable-line
+
+  const visibleProducts = useMemo(() => {
+    return products.filter(p => {
       if (filters.wattages.length > 0 && !filters.wattages.includes(`${p.wattage}W`)) return false
       if (filters.brands.length > 0 && !filters.brands.includes(p.brand)) return false
       if (filters.sockets.length > 0 && !filters.sockets.includes(p.socket)) return false
       return true
     })
-  }, [filters])
+  }, [products, filters.wattages, filters.brands, filters.sockets])
 
   return (
     <div className={style.page}>
@@ -35,12 +54,19 @@ export default function CatalogPage() {
       <div className={style.content}>
         <FilterSidebar
           filters={filters}
-          categories={mockCategories}
+          categories={categories}
           onChange={setFilters}
         />
         <main className={style.main}>
-          <p className={style.count}>{products.length} товаров</p>
-          <ProductGrid products={products} />
+          {error && <p className={style.error}>{error}</p>}
+          {loading ? (
+            <p className={style.loading}>Загрузка товаров...</p>
+          ) : (
+            <>
+              <p className={style.count}>{visibleProducts.length} товаров</p>
+              <ProductGrid products={visibleProducts} />
+            </>
+          )}
         </main>
       </div>
     </div>

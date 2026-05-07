@@ -21,3 +21,19 @@
   color: var(--text-secondary);
   margin-bottom: 20px;
 }
+
+.loading {
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.error {
+  font-size: 14px;
+  color: #e53935;
+  padding: 12px 16px;
+  background: #ffeaea;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}

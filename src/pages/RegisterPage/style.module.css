@@ -57,8 +57,16 @@
 
 .error {
   font-size: 13px;
-  color: #f44336;
+  color: #e53935;
+  background: #ffeaea;
+  border-radius: 6px;
+  padding: 8px 12px;
   margin-top: -4px;
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
 
 .btn {

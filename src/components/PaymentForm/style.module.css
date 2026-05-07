@@ -80,3 +80,8 @@
 .confirmBtn:hover {
   background: #43a047;
 }
+
+.confirmBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}

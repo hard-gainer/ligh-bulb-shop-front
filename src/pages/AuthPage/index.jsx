@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import Header from "../../components/Header"
+import { loginUser } from "../../store/actions/authActions"
 import style from "./style.module.css"
 
 export default function AuthPage() {
@@ -9,11 +10,14 @@ export default function AuthPage() {
   const [password, setPassword] = useState("")
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { loading, error } = useSelector(state => state.auth)
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
-    dispatch({ type: "auth/setUser", payload: { email, user_id: 1, role: "USER" } })
-    navigate("/")
+    const result = await dispatch(loginUser(email, password))
+    if (result.success) {
+      navigate("/")
+    }
   }
 
   return (
@@ -24,10 +28,10 @@ export default function AuthPage() {
           <h1 className={style.title}>Вход в аккаунт</h1>
           <form className={style.form} onSubmit={handleSubmit}>
             <div className={style.field}>
-              <label className={style.label}>Email или телефон</label>
+              <label className={style.label}>Email</label>
               <input
                 className={style.input}
-                type="text"
+                type="email"
                 placeholder="example@mail.ru"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
@@ -42,10 +46,14 @@ export default function AuthPage() {
                 placeholder="Введите пароль"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
+                minLength={6}
                 required
               />
             </div>
-            <button type="submit" className={style.btn}>Войти</button>
+            {error && <p className={style.error}>{error}</p>}
+            <button type="submit" className={style.btn} disabled={loading}>
+              {loading ? "Входим..." : "Войти"}
+            </button>
           </form>
           <p className={style.footer}>
             Нет аккаунта?{" "}
