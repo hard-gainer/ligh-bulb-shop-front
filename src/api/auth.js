@@ -34,6 +34,22 @@ export async function apiGetMe(accessToken) {
   return res.json()
 }
 
+export async function apiUpdatePassword(accessToken, password) {
+  const res = await fetch(`${API_AUTH}/api/v1/users/me`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({ password }),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || "Ошибка смены пароля")
+  }
+  return res.json()
+}
+
 export async function apiRefreshToken(refreshToken) {
   const res = await fetch(`${API_AUTH}/api/v1/auth/refresh`, {
     method: "POST",

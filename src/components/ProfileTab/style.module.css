@@ -1,7 +1,7 @@
 .profile {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
 }
 
 .title {
@@ -36,6 +36,77 @@
   font-size: 16px;
   font-weight: 500;
   color: var(--text-primary);
+}
+
+.passwordSection {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.sectionTitle {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.input {
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 15px;
+  background: var(--bg);
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--accent);
+}
+
+.error {
+  font-size: 14px;
+  color: #c0392b;
+}
+
+.success {
+  font-size: 14px;
+  color: #0a5c35;
+}
+
+.submitBtn {
+  align-self: flex-start;
+  padding: 10px 24px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: var(--radius);
+  transition: background 0.15s;
+  margin-top: 4px;
+}
+
+.submitBtn:hover {
+  background: var(--accent-hover);
 }
 
 .empty {
