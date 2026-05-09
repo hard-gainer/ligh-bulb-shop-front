@@ -9,7 +9,7 @@ export default function UserActions() {
 
   return (
     <div className={style.actions}>
-      <Link to="/auth" className={style.action}>
+      <Link to={user ? "/cabinet" : "/auth"} className={style.action}>
         <span className={style.icon}>👤</span>
         <span className={style.label}>{user ? user.email.split("@")[0] : "Кабинет"}</span>
       </Link>

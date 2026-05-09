@@ -1,0 +1,26 @@
+.orders {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.message {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.error {
+  color: #c0392b;
+  font-size: 15px;
+}

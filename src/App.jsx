@@ -6,6 +6,7 @@ import AuthPage from "./pages/AuthPage"
 import RegisterPage from "./pages/RegisterPage"
 import CartPage from "./pages/CartPage"
 import CheckoutPage from "./pages/CheckoutPage"
+import CabinetPage from "./pages/CabinetPage"
 import { restoreSession } from "./store/actions/authActions"
 
 function AppRoutes() {
@@ -22,6 +23,7 @@ function AppRoutes() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/checkout" element={<CheckoutPage />} />
+      <Route path="/cabinet" element={<CabinetPage />} />
     </Routes>
   )
 }

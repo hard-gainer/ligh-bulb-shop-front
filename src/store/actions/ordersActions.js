@@ -1,4 +1,4 @@
-import { apiCreateOrder } from "../../api/orders"
+import { apiCreateOrder, apiGetOrders } from "../../api/orders"
 import { mockStores } from "../../data/mockData"
 
 export function placeOrder({ contacts, delivery, cartItems }) {
@@ -27,6 +27,18 @@ export function placeOrder({ contacts, delivery, cartItems }) {
     } catch (e) {
       dispatch({ type: "orders/error", payload: e.message })
       return { success: false, error: e.message }
+    }
+  }
+}
+
+export function fetchOrders(email) {
+  return async function (dispatch) {
+    dispatch({ type: "orders/loading" })
+    try {
+      const list = await apiGetOrders(email)
+      dispatch({ type: "orders/setList", payload: list })
+    } catch (e) {
+      dispatch({ type: "orders/error", payload: e.message })
     }
   }
 }

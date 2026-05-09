@@ -12,3 +12,13 @@ export async function apiCreateOrder(orderData) {
   }
   return res.json()
 }
+
+export async function apiGetOrders(email) {
+  const params = new URLSearchParams({ email })
+  const res = await fetch(`${API_ORDERS}/api/v1/orders?${params}`)
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.detail || "Ошибка загрузки заказов")
+  }
+  return res.json()
+}

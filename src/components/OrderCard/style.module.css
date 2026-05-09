@@ -1,0 +1,101 @@
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.orderId {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.status {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--border);
+  color: var(--text-secondary);
+}
+
+.status.created {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.shipped {
+  background: #d1e7dd;
+  color: #0a5c35;
+}
+
+.date {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+}
+
+.itemName {
+  flex: 1;
+  color: var(--text-primary);
+}
+
+.itemQty {
+  color: var(--text-secondary);
+  min-width: 48px;
+  text-align: right;
+}
+
+.itemPrice {
+  font-weight: 600;
+  min-width: 80px;
+  text-align: right;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.address {
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex: 1;
+}
+
+.total {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
