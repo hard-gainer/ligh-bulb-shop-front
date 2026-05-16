@@ -8,7 +8,7 @@ export function loginUser(email, password) {
       dispatch({ type: "auth/setTokens", payload: tokens })
       const user = await apiGetMe(tokens.access_token)
       dispatch({ type: "auth/setUser", payload: user })
-      return { success: true }
+      return { success: true, user }
     } catch (e) {
       dispatch({ type: "auth/error", payload: e.message })
       return { success: false, error: e.message }
